@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  item_code: MyString
+  category_id: 1
+  group_id: 1
+  sub_group_id: 1
+  section_id: 1
+  goods_services: 1
+  weighted_item_id: 1
+  varierty: 1
+
+two:
+  name: MyString
+  item_code: MyString
+  category_id: 1
+  group_id: 1
+  sub_group_id: 1
+  section_id: 1
+  goods_services: 1
+  weighted_item_id: 1
+  varierty: 1

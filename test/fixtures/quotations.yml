@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  item_id: 
+  shop_id: 
+  scheduled_time: 2018-03-25 02:26:32
+  state_id: 1
+  town_id: 1
+  specification_id: 
+  special_code: 1
+  shop_code: 1
+  remarks: MyText
+  current_price: 1
+
+two:
+  item_id: 
+  shop_id: 
+  scheduled_time: 2018-03-25 02:26:32
+  state_id: 1
+  town_id: 1
+  specification_id: 
+  special_code: 1
+  shop_code: 1
+  remarks: MyText
+  current_price: 1
