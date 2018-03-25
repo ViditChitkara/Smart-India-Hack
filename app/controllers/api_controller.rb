@@ -1,4 +1,4 @@
-class ApiController < ActionController::API
+class ApiController < ActionController::Base
 
   def response_data(data, message, status, error: nil, disabled: false, update: false, params: {})
     result = Hash.new

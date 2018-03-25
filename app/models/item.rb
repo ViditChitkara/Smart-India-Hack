@@ -4,4 +4,5 @@ class Item < ActiveRecord::Base
 	belongs_to :sub_group
 	belongs_to :category
 	belongs_to :section
+	has_many :quotations
 end

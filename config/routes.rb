@@ -53,4 +53,14 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+  namespace :api do
+    namespace :v1 do
+      post '/signin' => 'users_api#signin'
+      post '/signup' => 'users_api#signup'
+      get '/items' => 'users_logged_in#show_items'
+      get '/schedule' => 'users_logged_in#get_schedule'
+      get '/shops-to-visit' => 'users_logged_in#shops_to_visit'
+    end
+  end
 end
