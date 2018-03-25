@@ -1,5 +1,5 @@
 class ChangeColOfQuotation < ActiveRecord::Migration
   def change
-  	change_column :quotations, :current_price, :float
+  	change_column :quotation_items, :current_price, :float
   end
 end

@@ -1,5 +1,5 @@
 class AddPriceToQuotation < ActiveRecord::Migration
   def change
-  	add_column :quotations, :price, :float
+  	add_column :quotation_items, :price, :float
   end
 end
