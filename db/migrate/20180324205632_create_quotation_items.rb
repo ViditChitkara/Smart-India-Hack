@@ -1,4 +1,4 @@
-class CreateQuotations < ActiveRecord::Migration
+class CreateQuotationItems < ActiveRecord::Migration
   def change
     create_table :quotation_items do |t|
       t.references :item, index: true, foreign_key: true
