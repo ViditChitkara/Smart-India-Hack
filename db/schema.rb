@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180325055607) do
+ActiveRecord::Schema.define(version: 20180325103036) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -39,12 +39,10 @@ ActiveRecord::Schema.define(version: 20180325055607) do
     t.datetime "updated_at",       null: false
   end
 
-  create_table "quotations", force: :cascade do |t|
+  create_table "quotation_items", force: :cascade do |t|
     t.integer  "item_id"
     t.integer  "shop_id"
     t.datetime "scheduled_time"
-    t.integer  "state_id"
-    t.integer  "town_id"
     t.integer  "specification_id"
     t.integer  "special_code"
     t.integer  "shop_code"
@@ -54,12 +52,23 @@ ActiveRecord::Schema.define(version: 20180325055607) do
     t.datetime "updated_at",       null: false
     t.integer  "user_id"
     t.float    "price"
+    t.integer  "quotation_id"
   end
 
-  add_index "quotations", ["item_id"], name: "index_quotations_on_item_id"
-  add_index "quotations", ["shop_id"], name: "index_quotations_on_shop_id"
-  add_index "quotations", ["specification_id"], name: "index_quotations_on_specification_id"
-  add_index "quotations", ["user_id"], name: "index_quotations_on_user_id"
+  add_index "quotation_items", ["item_id"], name: "index_quotation_items_on_item_id"
+  add_index "quotation_items", ["quotation_id"], name: "index_quotation_items_on_quotation_id"
+  add_index "quotation_items", ["shop_id"], name: "index_quotation_items_on_shop_id"
+  add_index "quotation_items", ["specification_id"], name: "index_quotation_items_on_specification_id"
+  add_index "quotation_items", ["user_id"], name: "index_quotation_items_on_user_id"
+
+  create_table "quotations", force: :cascade do |t|
+    t.string   "state"
+    t.string   "town"
+    t.integer  "quotation_number"
+    t.datetime "month"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
 
   create_table "sections", force: :cascade do |t|
     t.string   "name"

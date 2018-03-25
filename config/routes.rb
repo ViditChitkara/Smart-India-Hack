@@ -58,9 +58,10 @@ Rails.application.routes.draw do
     namespace :v1 do
       post '/signin' => 'users_api#signin'
       post '/signup' => 'users_api#signup'
-      get '/items' => 'users_logged_in#show_items'
-      get '/schedule' => 'users_logged_in#get_schedule'
-      get '/shops-to-visit' => 'users_logged_in#shops_to_visit'
+      get '/items' => 'users_logged_in#show_items' # show items on a particular shop with lat. and long.
+      get '/schedule' => 'users_logged_in#get_schedule' # Get the list of items on a particular day and shop
+      get '/shops-to-visit' => 'users_logged_in#shops_to_visit' #shops to visit on a particular date
+      post '/update-price-quotation' => 'users_logged_in#update_price_quotation' #update price of quotation
     end
   end
 end

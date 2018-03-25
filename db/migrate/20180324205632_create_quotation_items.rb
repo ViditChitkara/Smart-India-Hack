@@ -1,6 +1,6 @@
 class CreateQuotations < ActiveRecord::Migration
   def change
-    create_table :quotations do |t|
+    create_table :quotation_items do |t|
       t.references :item, index: true, foreign_key: true
       t.references :shop, index: true, foreign_key: true
       t.datetime :scheduled_time
