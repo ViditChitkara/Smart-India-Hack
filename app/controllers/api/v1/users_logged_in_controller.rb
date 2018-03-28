@@ -45,6 +45,22 @@ module Api
         return response_data(data, "Entire schedule", 200)
       end
 
+      def get_items
+        shop_id = params["shop_id"].to_i
+        items = Items.where(original_shop_id: shop_id)
+        data = Hash.new
+        data["items"] = items
+        return response_data(data, "Items", 200)
+      end
+
+      def get_assigned_user_markets
+        user_id = params["user_id"].to_i
+        user = User.find(user_id)
+        markets = user.markets
+        data["markets"] = markets
+        return response_data(data, "Assigned Markets", 200)
+      end
+
       #update price of quotation
       def update_price_quotation
         lat = params["lat"]
