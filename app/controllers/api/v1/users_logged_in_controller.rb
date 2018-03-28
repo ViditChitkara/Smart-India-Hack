@@ -27,10 +27,22 @@ module Api
       end
 
       #shops to visit on a particular date
-      def shops_to_visit
-        date = DateTime.parse(params["date"])
-        data = QuotationItem.shops_to_visit_on(date: date)
-        return response_data(data, "Shops to visit on given date",200)
+      def schedule
+        month = params["month"]
+        year = params["year"]
+        data = Hash.new
+        current_user_api.markets.all.each do |m|
+          m.shops.all.each do |s|
+            day = s.scheduled_day
+            str = day+"/"+month+"/"+year
+            if data.has_key? str
+              data[str].push(s.attributes)
+            else
+              data[str] = [s.attributes]
+            end
+          end
+        end
+        return response_data(data, "Entire schedule", 200)
       end
 
       #update price of quotation
