@@ -47,7 +47,7 @@ module Api
 
       def get_items
         shop_id = params["shop_id"].to_i
-        items = Items.where(original_shop_id: shop_id)
+        items = Item.where(original_shop_id: shop_id)
         data = Hash.new
         data["items"] = items
         return response_data(data, "Items", 200)
@@ -57,6 +57,7 @@ module Api
         user_id = params["user_id"].to_i
         user = User.find(user_id)
         markets = user.markets
+        data = Hash.new
         data["markets"] = markets
         return response_data(data, "Assigned Markets", 200)
       end
