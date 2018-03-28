@@ -62,21 +62,45 @@ module Api
         return response_data(data, "Assigned Markets", 200)
       end
 
-      #update price of quotation
       def update_price_quotation
-        lat = params["lat"]
-        lon = params["lon"]
-        date = params["date"]
-        item_id = params["item_id"]
-        price = params["price"]
-        shop = Shop.located_at(lat,lon)
-        date = DateTime.parse(date)
-        if date.to_date!=DateTime.now.to_date
-          return response_data({}, "Invalid updation",200)
-        end
-        QuotationItem.update_price(date,item_id,shop.id,price)
-        return response_data({}, "Success",200)
+        item_id = params["item_id"].to_i
+        price = params["price"].to_f
+        item = Item.find(item_id)
+        month = params["month"]
+        market_id = item.market_id
+        quotation = Quotation.where(month: month, market_id: market_id).first
+        quotation_item = QuotationItem.where(quotation_id: quotation.id, item_id: item_id).first
+        quotation_item.update(price: price)
+        return response_data({}, "Success", 200)
       end
+
+      def item_description
+        item_id = params["item_id"].to_i
+        item = Item.find(item_id)
+        month = params["month"]
+        market_id = item.market_id
+        quotation = Quotation.where(month: month, market_id: market_id).first
+        quotation_item = QuotationItem.where(quotation_id: quotation.id, item_id: item_id).first
+        data = Hash.new
+        data["quotation_item"] = quotation_item
+        return response_data(data, "Success", 200)
+      end
+
+      #update price of quotation
+      # def update_price_quotation
+      #   lat = params["lat"]
+      #   lon = params["lon"]
+      #   date = params["date"]
+      #   item_id = params["item_id"]
+      #   price = params["price"]
+      #   shop = Shop.located_at(lat,lon)
+      #   date = DateTime.parse(date)
+      #   if date.to_date!=DateTime.now.to_date
+      #     return response_data({}, "Invalid updation",200)
+      #   end
+      #   QuotationItem.update_price(date,item_id,shop.id,price)
+      #   return response_data({}, "Success",200)
+      # end
 
       def authenticate_user
         # byebug
