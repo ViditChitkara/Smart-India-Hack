@@ -33,7 +33,7 @@ module Api
         data = Hash.new
         current_user_api.markets.all.each do |m|
           m.shops.all.each do |s|
-            day = s.scheduled_day
+            day = s.schedule_day.to_s
             str = day+"/"+month+"/"+year
             if data.has_key? str
               data[str].push(s.attributes)
