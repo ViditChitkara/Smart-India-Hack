@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180328131415) do
+ActiveRecord::Schema.define(version: 20180328152232) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -35,9 +35,16 @@ ActiveRecord::Schema.define(version: 20180328131415) do
     t.integer  "goods_services"
     t.integer  "weighted_item_id"
     t.integer  "varierty"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "market_id"
+    t.integer  "original_shop_id"
+    t.integer  "first_reserve_shop_id"
+    t.integer  "second_reserve_shop_id"
+    t.integer  "open_shop_id"
   end
+
+  add_index "items", ["market_id"], name: "index_items_on_market_id"
 
   create_table "markets", force: :cascade do |t|
     t.string   "name"
@@ -76,10 +83,13 @@ ActiveRecord::Schema.define(version: 20180328131415) do
     t.string   "state"
     t.string   "town"
     t.integer  "quotation_number"
-    t.datetime "month"
+    t.string   "month"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.integer  "market_id"
   end
+
+  add_index "quotations", ["market_id"], name: "index_quotations_on_market_id"
 
   create_table "sections", force: :cascade do |t|
     t.string   "name"
@@ -90,10 +100,14 @@ ActiveRecord::Schema.define(version: 20180328131415) do
   create_table "shops", force: :cascade do |t|
     t.float    "latitude"
     t.float    "longitude"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.string   "name"
+    t.integer  "market_id"
+    t.integer  "schedule_day"
   end
+
+  add_index "shops", ["market_id"], name: "index_shops_on_market_id"
 
   create_table "specifications", force: :cascade do |t|
     t.string   "brand"
