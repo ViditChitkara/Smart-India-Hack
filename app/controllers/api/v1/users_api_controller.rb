@@ -9,7 +9,7 @@ module Api
         if user
           if user.password == password
             data = Hash.new
-            data["access_token"] = user.access_token
+            data["user"] = user
             return response_data(data, "Signed In", 200)
           else
             return response_data({}, "Password Invalid", 200)
@@ -32,7 +32,9 @@ module Api
             user.password = password
             user.access_token = SecureRandom.hex
             user.save!
-            return response_data(user, "Success", 200)
+            data = Hash.new
+            data["user"] = user
+            return response_data(data, "Success", 200)
           else
             return response_data(user, "Password and reconfirm password doesn't match", 200)
           end
