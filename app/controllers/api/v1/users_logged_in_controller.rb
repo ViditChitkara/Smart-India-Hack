@@ -70,7 +70,7 @@ module Api
         market_id = item.market_id
         quotation = Quotation.where(month: month, market_id: market_id).first
         quotation_item = QuotationItem.where(quotation_id: quotation.id, item_id: item_id).first
-        quotation_item.update(price: price)
+        quotation_item.update(price: price,user_id:current_user_api.id)
         return response_data({}, "Success", 200)
       end
 
