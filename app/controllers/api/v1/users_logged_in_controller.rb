@@ -47,7 +47,16 @@ module Api
 
       def get_items
         shop_id = params["shop_id"].to_i
-        items = Item.where(original_shop_id: shop_id)
+        items = []
+        Item.where(original_shop_id: shop_id).each do |item|
+          output = item.attributes
+          if item.quotation_item.price.present?
+            output[:price] = item.quotation_item.price
+          else
+            output[:price] = 0
+          end
+          items.push(output)
+        end
         data = Hash.new
         data["items"] = items
         return response_data(data, "Items", 200)
