@@ -76,5 +76,5 @@ Rails.application.routes.draw do
   post '/signin' => 'authentication#signin'
   post '/signup' => 'authentication#signup'
   post '/logout' => 'authentication#logout'
-
+  get '/get-quotation-items' => 'home#quotation_items'
 end
