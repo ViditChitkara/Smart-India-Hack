@@ -75,5 +75,6 @@ Rails.application.routes.draw do
   get '/signup' => 'authentication#signup_get'
   post '/signin' => 'authentication#signin'
   post '/signup' => 'authentication#signup'
+  post '/logout' => 'authentication#logout'
 
 end
