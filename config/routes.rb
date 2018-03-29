@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'home/dashboard'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -67,4 +69,12 @@ Rails.application.routes.draw do
       post '/update-price-quotation' => 'users_logged_in#update_price_quotation' #update price of quotation
     end
   end
+
+  get '/' => 'home#dashboard'
+  get '/signin' => 'authentication#signin_get'
+  get '/signup' => 'authentication#signup_get'
+  post '/signin' => 'authentication#signin'
+  post '/signup' => 'authentication#signup'
+  post '/logout' => 'authentication#logout'
+
 end

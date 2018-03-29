@@ -1,0 +1,59 @@
+<body class="bg-dark">
+	<div class="container py-5">
+	    <div class="row">
+	        <div class="col-md-12">
+	            <h2 class="text-center text-white mb-4">CPI dashboard</h2>
+	            <div class="row">
+	                <div class="col-md-6 mx-auto">
+
+	                    <!-- form card login -->
+	                    <div class="card 1">
+	                        <div class="card-header">
+	                            <h3 class="mb-0">Signup</h3>
+	                        </div>
+	                        <div class="card-body">
+	                            <form class="form" action="/signup" role="form" autocomplete="off" id="formLogin" novalidate="" method="POST">
+	                            	<div class="form-group">
+	                            		<input name="authenticity_token" type="hidden" 
+      																	 value="<%= form_authenticity_token %>">
+      													</div>
+	                                <div class="form-group">
+	                                    <label for="username">Username</label>
+	                                    <input type="text" class="form-control form-control-lg 1" name="username" id="username" required>
+	                                </div>
+	                                <div class="form-group">
+	                                    <label for="email">Email</label>
+	                                    <input type="email" class="form-control form-control-lg 1" name="email" id="email" required>
+	                                </div>
+                                <div class="form-group">
+                                  <label for="employee_id">Employee Id</label>
+                                  <input type="text" class="form-control form-control-lg 1" name="employee_id" id="employee_id" required>
+                                </div>
+	                                <div class="form-group">
+	                                    <label for="password">Password</label>
+	                                    <input type="password" class="form-control form-control-lg 1" name="password" id="password" required>
+	                                </div>
+	                                <div class="form-group">
+	                                    <label for="reconfirm_password">Confirm Password</label>
+	                                    <input type="reconfirm_password" class="form-control form-control-lg 1" id="reconfirm_password" required>
+	                                </div>
+	                                <button type="submit" class="btn btn-success btn-lg float-right" id="btnLogin">signup</button>
+	                            </form>
+	                        </div>
+	                        <!--/card-block-->
+	                    </div>
+	                    <!-- /form card login -->
+
+	                </div>
+
+
+	            </div>
+	            <!--/row-->
+
+	        </div>
+	        <!--/col-->
+	    </div>
+	    <!--/row-->
+	</div>
+	<!--/container-->
+</body>
