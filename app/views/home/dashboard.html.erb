@@ -51,3 +51,18 @@
 </form>
 <div class="container" id="q_items">
 </div>
+
+<div class="container">
+  <button id="download">Download CSV</button>
+</div>
+
+<script type="text/javascript">
+  $("#download").on('click',function download () {
+    // body...
+    console.log("download");
+    market_id = $("#markets").val();
+    month = $("#month").val();
+    str = '/quotation-csv.csv?market='+market_id+"&month="+month;
+    window.location = str;   
+  })
+</script>

@@ -1,3 +1,4 @@
+require 'csv'
 class QuotationItem < ActiveRecord::Base
   belongs_to :item
   belongs_to :shop
@@ -35,5 +36,14 @@ class QuotationItem < ActiveRecord::Base
   def self.get_quotation_for(date,state,town,number)
   	quotations = Quotation.where('month BETWEEN ? AND ?', date.beginning_of_day, date.end_of_day)
   	quotations.where(state: state, town: town, quotation_number: number).first
+  end
+
+  def self.to_csv(options = {})
+    CSV.generate(options) do |csv|
+      csv << column_names
+      all.each do |qi|
+        csv << qi.attributes.values_at(*column_names)
+      end
+    end
   end
 end

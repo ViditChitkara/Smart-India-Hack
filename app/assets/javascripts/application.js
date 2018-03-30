@@ -52,6 +52,7 @@ function onBodyLoad() {
       }
    })
   }
+
 }
 
 window.addEventListener("load", function(event) {
