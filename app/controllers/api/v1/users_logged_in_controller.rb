@@ -47,13 +47,27 @@ module Api
 
       def get_items
         shop_id = params["shop_id"].to_i
+        shop = Shop.find(shop_id)
+        current_month = "April"
+        previous_month = "March"
+        current_month_quotation = Quotation.where(month: current_month, market_id: shop.market.id).first
+        previous_month_quotation = Quotation.where(month: previous_month, market_id: shop.market.id).first
         items = []
         Item.where(original_shop_id: shop_id).each do |item|
           output = item.attributes
-          if item.quotation_item.price.present?
-            output[:price] = item.quotation_item.price
+          current_quotation_item = QuotationItem.where(item_id: item.id, quotation_id: current_month_quotation.id).first
+          previous_quotation_item = QuotationItem.where(item_id: item.id, quotation_id: previous_month_quotation.id).first
+
+          if current_quotation_item.price.present?
+            output[:price] = current_quotation_item.price
           else
             output[:price] = 0
+          end
+
+          if previous_quotation_item.price.present?
+            output[:previous_month_price] = previous_quotation_item.price
+          else
+            output[:previous_month_price] = 0
           end
           items.push(output)
         end
