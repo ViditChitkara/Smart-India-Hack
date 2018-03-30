@@ -66,6 +66,7 @@ Rails.application.routes.draw do
       get '/get-items' => 'users_logged_in#get_items'
       get '/get-required-user-market' => 'users_logged_in#get_assigned_user_markets'
       get '/item-description' => 'users_logged_in#item_description'
+      get '/sync' => 'sync_api#sync'
       post '/update-price-quotation' => 'users_logged_in#update_price_quotation' #update price of quotation
     end
   end
