@@ -17,7 +17,13 @@
 
 function onBodyLoad() {
 
-	setInterval(refreshPartial, 3000);
+  var lookup = false;
+
+  $("#portal-form").on('submit',function() {
+    lookup = true;
+    console.log("test");
+    setInterval(refreshPartial, 3000);
+  });
 
   function refreshPartial() {
     console.log("test");
