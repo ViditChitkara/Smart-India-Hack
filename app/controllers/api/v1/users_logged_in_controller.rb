@@ -34,7 +34,7 @@ module Api
         current_user_api.markets.all.each do |m|
           m.shops.all.each do |s|
             day = s.schedule_day.to_s
-            str = day+"/"+month+"/"+year
+            str = Date.parse(day+"/"+month+"/"+year).strftime("%d %B,%Y")
             if data.has_key? str
               data[str].push(s.attributes)
             else
