@@ -17,7 +17,28 @@
 
 function onBodyLoad() {
 
-	setInterval(refreshPartial, 3000);
+  var interval;
+
+  $("#portal-form select").on('change',function() {
+    console.log("here");
+    clrInterval();
+  })
+
+  $("#portal-form input").on('change',function() {
+    clrInterval();
+  })
+
+  $("#portal-form").on('submit',function() {
+    console.log("test");
+    clrInterval();
+    interval = setInterval(refreshPartial, 3000);
+  });
+
+  function clrInterval() {
+    if(interval) {
+      clearInterval(interval);
+    }
+  }
 
   function refreshPartial() {
     console.log("test");
