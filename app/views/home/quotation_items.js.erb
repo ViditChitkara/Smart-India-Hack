@@ -1,2 +1,36 @@
 $("#q_items").empty();
 $("#q_items").append("<%= escape_javascript(render 'quotation_items', :quotation_items => @quotation_items) %>");
+
+if(submitted) {
+		submitted = false;
+		handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+      markers = handler.addMarkers([
+      	<% @shops.each do |s| %>
+      		<% unless s == @shops.last %>
+		        {
+		          "lat": <%= s.latitude %>,
+		          "lng": <%= s.longitude %>,
+		          "picture": {
+		            "url": "http://icons.iconarchive.com/icons/paomedia/small-n-flat/48/map-marker-icon.png",
+		            "width":  50,
+		            "height": 50
+		          },
+		          "infowindow": "hello!"
+		        },
+	        <% end %>
+        <% end %>
+        		{
+		          "lat": <%= @shops.last.latitude %>,
+		          "lng": <%= @shops.last.longitude %>,
+		          "picture": {
+		            "url": "http://icons.iconarchive.com/icons/paomedia/small-n-flat/48/map-marker-icon.png",
+		            "width":  50,
+		            "height": 50
+		          },
+		          "infowindow": "hello!"
+		        }
+      ]);
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+    });
+}

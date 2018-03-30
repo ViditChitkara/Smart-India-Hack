@@ -11,6 +11,7 @@ class HomeController < ApplicationController
   	month = params["month"]
   	year = params["year"].to_i
   	quotation = Quotation.where(market_id: market_id, month: month).first
+    @shops = Market.find(market_id).shops
   	@quotation_items = quotation.quotation_items
   	respond_to do |format|
       format.js

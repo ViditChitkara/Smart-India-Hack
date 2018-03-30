@@ -13,11 +13,14 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require underscore
+//= require gmaps/google
 //= require_tree .
 
 function onBodyLoad() {
 
   var interval;
+  submitted = false;
 
   $("#portal-form select").on('change',function() {
     console.log("here");
@@ -30,8 +33,10 @@ function onBodyLoad() {
 
   $("#portal-form").on('submit',function() {
     console.log("test");
+    submitted = true;
     clrInterval();
     interval = setInterval(refreshPartial, 3000);
+    handler = Gmaps.build('Google');
   });
 
   function clrInterval() {
@@ -44,7 +49,7 @@ function onBodyLoad() {
     console.log("test");
     market_id = $("#markets").val();
     month = $("#month").val();
-    str = '/get-quotation-items?market='+market_id+"&month="+month
+    str = '/get-quotation-items?market='+market_id+"&month="+month;
     $.ajax({
       type: 'GET',
       url: str,
@@ -52,6 +57,7 @@ function onBodyLoad() {
       }
    })
   }
+
 
 }
 
