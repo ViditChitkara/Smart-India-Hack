@@ -15,24 +15,24 @@
 //= require turbolinks
 //= require_tree .
 
-function onBodyLoad() {
-
-	setInterval(refreshPartial, 3000);
-
-  function refreshPartial() {
-    console.log("test");
-    market_id = $("#markets").val();
-    month = $("#month").val();
-    str = '/get-quotation-items?market='+market_id+"&month="+month
-    $.ajax({
-      type: 'GET',
-      url: str,
-      success: function() {
-      }
-   })
-  }
-}
-
-window.addEventListener("load", function(event) {
-    onBodyLoad();
-});
+// function onBodyLoad() {
+//
+// 	setInterval(refreshPartial, 3000);
+//
+//   function refreshPartial() {
+//     console.log("test");
+//     market_id = $("#markets").val();
+//     month = $("#month").val();
+//     str = '/get-quotation-items?market='+market_id+"&month="+month
+//     $.ajax({
+//       type: 'GET',
+//       url: str,
+//       success: function() {
+//       }
+//    })
+//   }
+// }
+//
+// window.addEventListener("load", function(event) {
+//     onBodyLoad();
+// });
