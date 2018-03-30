@@ -55,16 +55,17 @@ module Api
         items = []
         Item.where(original_shop_id: shop_id).each do |item|
           output = item.attributes
-          current_quotation_item = QuotationItem.where(item_id: item.id, quotation_id: current_month_quotation.id)
-          previous_quotation_item = QuotationItem.where(item_id: item.id, quotation_id: current_month_quotation.id)
+          current_quotation_item = QuotationItem.where(item_id: item.id, quotation_id: current_month_quotation.id).first
+          previous_quotation_item = QuotationItem.where(item_id: item.id, quotation_id: previous_month_quotation.id).first
+
           if current_quotation_item.price.present?
-            output[:price] = item.quotation_item.price
+            output[:price] = current_quotation_item.price
           else
             output[:price] = 0
           end
 
           if previous_quotation_item.price.present?
-            output[:previous_month_price] = item.quotation_item.price
+            output[:previous_month_price] = previous_quotation_item.price
           else
             output[:previous_month_price] = 0
           end
