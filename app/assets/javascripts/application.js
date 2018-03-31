@@ -49,7 +49,7 @@ function onBodyLoad() {
     console.log("test");
     market_id = $("#markets").val();
     month = $("#month").val();
-    str = '/get-quotation-items?market='+market_id+"&month="+month;
+    str = '/get-quotation-items?market_id='+market_id+"&month="+month;
     $.ajax({
       type: 'GET',
       url: str,

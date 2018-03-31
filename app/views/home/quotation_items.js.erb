@@ -6,7 +6,7 @@ if(submitted) {
 		handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
       markers = handler.addMarkers([
       	<% @shops.each do |s| %>
-      		<% unless s == @shops.last %>
+      		<% unless s == @shops.last && s.latitude %>
 		        {
 		          "lat": <%= s.latitude %>,
 		          "lng": <%= s.longitude %>,
@@ -33,4 +33,6 @@ if(submitted) {
       handler.bounds.extendWith(markers);
       handler.fitMapToBounds();
     });
+	$("#scrutiny_table").empty();
+	$("#scrutiny_table").append("<%= escape_javascript(render 'diagnostic_table', :quotation_items => @quotation_items, :market_id=>@market_id, :month=>@month) %>");		
 }

@@ -1,0 +1,33 @@
+<h2>Diagnostic Table</h2>
+<table class="table table-sm">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Item Name</th>
+      <th scope="col">Previous Month Price</th>
+      <th scope="col">Current Month Price</th>
+      <th scope="col">Actions</th>  
+    </tr>
+  </thead>
+  <tbody>
+    <% quotation_items.each do |qi|%>
+      <% current_qoutation_item = qi %>
+      <% pq = Quotation.where(month: "March",market_id: qi.item.market_id).first %>
+      <% pqi = QuotationItem.where(item_id: qi.item.id, quotation_id: pq.id).first %>
+      <tr>
+        <td><%= qi.id %></td>
+        <td><%= qi.item.name %></td>
+        <td><%= pqi.price %></td>
+        <td><%= qi.price %></td>
+        <td>
+          <% if qi.status == 0 %>
+            <% str = "/mark-verified?market=#{market_id}&month=#{month}&qi_id=#{qi.id}" %>
+            <a class="btn btn-primary" href="<%= str %>" data-method="POST" data-remote="true" style="margin-right: 6px;">Verified</button>
+            <% str1 = "/mark-inconsistent?market=#{market_id}&month=#{month}&qi_id=#{qi.id}" %>
+            <a class="btn btn-primary" href="<%= str1 %>" data-method="POST" data-remote="true style="color: white;">Inconsistent</button>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

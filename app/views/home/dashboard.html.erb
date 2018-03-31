@@ -12,7 +12,7 @@
         <div class="input-group-prepend">
           <label class="input-group-text" for="markets">Markets</label>
         </div>
-        <select class="custom-select" name="market" id="markets">
+        <select class="custom-select" name="market_id" id="markets">
           <option selected>Choose...</option>
           <% @markets.each do |m| %>
             <option value="<%= m.id %>"><%= m.name %></option>
@@ -56,6 +56,8 @@
   </div>
 </div>
 <div class="container" id="q_items" style="margin-top: 20px;">
+</div>
+<div class="container" id="scrutiny_table" style="margin-top: 40px;">
 </div>
 
 

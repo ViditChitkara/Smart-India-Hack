@@ -88,7 +88,14 @@ module Api
       def update_price_quotation
         item_id = params["item_id"].to_i
         price = params["price"].to_f
+        lat = param["lat"].to_f
+        lon = params["lon"].to_f
         item = Item.find(item_id)
+        shop = Shop.find(item.original_shop_id)
+        distance = distance [shop.latitude,shop.longitude],[lat,lon]
+        if distance>500
+          return response_data({}, "Failure", 200)
+        end
         month = params["month"]
         market_id = item.market_id
         quotation = Quotation.where(month: month, market_id: market_id).first
@@ -139,6 +146,23 @@ module Api
           @current_user_api
       end
 
+      private
+      def distance loc1, loc2
+        rad_per_deg = Math::PI/180  # PI / 180
+        rkm = 6371                  # Earth radius in kilometers
+        rm = rkm * 1000             # Radius in meters
+
+        dlat_rad = (loc2[0]-loc1[0]) * rad_per_deg  # Delta, converted to rad
+        dlon_rad = (loc2[1]-loc1[1]) * rad_per_deg
+
+        lat1_rad, lon1_rad = loc1.map {|i| i * rad_per_deg }
+        lat2_rad, lon2_rad = loc2.map {|i| i * rad_per_deg }
+
+        a = Math.sin(dlat_rad/2)**2 + Math.cos(lat1_rad) * Math.cos(lat2_rad) * Math.sin(dlon_rad/2)**2
+        c = 2 * Math::atan2(Math::sqrt(a), Math::sqrt(1-a))
+
+        rm * c # Delta in meters
+      end
     end
   end
 end

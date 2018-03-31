@@ -79,5 +79,7 @@ Rails.application.routes.draw do
   post '/logout' => 'authentication#logout'
   get '/get-quotation-items' => 'home#quotation_items'
   get '/quotation-csv' => 'home#quotation_csv'
+  post '/mark-verified' => 'home#mark_verified'
+  post '/mark-inconsistent' => 'home#mark_inconsistent'
   #match '/quotation-items.csv' => 'home#quotation_csv', via: :get, defaults: { format: :csv }
 end

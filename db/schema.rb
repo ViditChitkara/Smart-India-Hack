@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180330083712) do
+ActiveRecord::Schema.define(version: 20180331024029) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -66,13 +66,14 @@ ActiveRecord::Schema.define(version: 20180330083712) do
     t.integer  "shop_code"
     t.text     "remarks"
     t.float    "current_price"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.integer  "user_id"
     t.float    "price"
     t.integer  "quotation_id"
     t.string   "unit"
     t.integer  "quantity"
+    t.integer  "status",           default: 0
   end
 
   add_index "quotation_items", ["item_id"], name: "index_quotation_items_on_item_id"
