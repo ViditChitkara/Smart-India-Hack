@@ -6,7 +6,7 @@ if(submitted) {
 		handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
       markers = handler.addMarkers([
       	<% @shops.each do |s| %>
-      		<% unless s == @shops.last && s.latitude %>
+      		<% if s != @shops.last && s.latitude && s.longitude %>
 		        {
 		          "lat": <%= s.latitude %>,
 		          "lng": <%= s.longitude %>,
@@ -19,6 +19,7 @@ if(submitted) {
 		        },
 	        <% end %>
         <% end %>
+          <% if @shops.last.latitude && @shops.last.longitude %>
         		{
 		          "lat": <%= @shops.last.latitude %>,
 		          "lng": <%= @shops.last.longitude %>,
@@ -29,6 +30,7 @@ if(submitted) {
 		          },
 		          "infowindow": "hello!"
 		        }
+		      <% end %>
       ]);
       handler.bounds.extendWith(markers);
       handler.fitMapToBounds();
