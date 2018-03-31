@@ -88,8 +88,8 @@ module Api
       def update_price_quotation
         item_id = params["item_id"].to_i
         price = params["price"].to_f
-        lat = param["lat"].to_f
-        lon = params["lon"].to_f
+        # lat = param["lat"].to_f
+        # lon = params["lon"].to_f
         item = Item.find(item_id)
         shop = Shop.find(item.original_shop_id)
         # distance = distance [shop.latitude,shop.longitude],[lat,lon]
