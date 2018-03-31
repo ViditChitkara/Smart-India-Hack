@@ -3,6 +3,38 @@ $("#q_items").append("<%= escape_javascript(render 'quotation_items', :quotation
 
 if(submitted) {
 		submitted = false;
+		handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+      markers = handler.addMarkers([
+      	<% @shops.each do |s| %>
+      		<% if s != @shops.last && s.latitude && s.longitude %>
+		        {
+		          "lat": <%= s.latitude %>,
+		          "lng": <%= s.longitude %>,
+		          "picture": {
+		            "url": "http://icons.iconarchive.com/icons/paomedia/small-n-flat/48/map-marker-icon.png",
+		            "width":  50,
+		            "height": 50
+		          },
+		          "infowindow": "hello!"
+		        },
+	        <% end %>
+        <% end %>
+          <% if @shops.last.latitude && @shops.last.longitude %>
+        		{
+		          "lat": <%= @shops.last.latitude %>,
+		          "lng": <%= @shops.last.longitude %>,
+		          "picture": {
+		            "url": "http://icons.iconarchive.com/icons/paomedia/small-n-flat/48/map-marker-icon.png",
+		            "width":  50,
+		            "height": 50
+		          },
+		          "infowindow": "hello!"
+		        }
+		      <% end %>
+      ]);
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+    });
 	$("#scrutiny_table").empty();
 	$("#scrutiny_table").append("<%= escape_javascript(render 'diagnostic_table', :quotation_items => @quotation_items, :market_id=>@market_id, :month=>@month) %>");		
 }

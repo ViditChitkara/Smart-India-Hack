@@ -13,6 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require underscore
+//= require gmaps/google
 //= require_tree .
 
 function onBodyLoad() {
@@ -34,6 +36,7 @@ function onBodyLoad() {
     submitted = true;
     clrInterval();
     interval = setInterval(refreshPartial, 3000);
+    handler = Gmaps.build('Google');
   });
 
   function clrInterval() {
