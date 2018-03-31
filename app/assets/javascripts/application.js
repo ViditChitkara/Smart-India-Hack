@@ -34,7 +34,6 @@ function onBodyLoad() {
     submitted = true;
     clrInterval();
     interval = setInterval(refreshPartial, 3000);
-    handler = Gmaps.build('Google');
   });
 
   function clrInterval() {
