@@ -3,12 +3,6 @@ $("#q_items").append("<%= escape_javascript(render 'quotation_items', :quotation
 
 if(submitted) {
 		submitted = false;
-		handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-      markers = handler.addMarkers([
-      ]);
-      handler.bounds.extendWith(markers);
-      handler.fitMapToBounds();
-    });
 	$("#scrutiny_table").empty();
 	$("#scrutiny_table").append("<%= escape_javascript(render 'diagnostic_table', :quotation_items => @quotation_items, :market_id=>@market_id, :month=>@month) %>");		
 }
