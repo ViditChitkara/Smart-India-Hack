@@ -13,4 +13,4 @@ Ruby on rails backend for CPI android app.
 * `rake db:seed` --> For test data
 * `rails s` --> To start the server locally
 
-Producution link: https://sih-cpi.herokuapp.com/
+Producution link: https://sih-cpi.herokuapp.com
