@@ -15,7 +15,7 @@ if(submitted) {
 		            "width":  50,
 		            "height": 50
 		          },
-		          "infowindow": "hello!"
+		          "infowindow": "<%= s.name %>"
 		        },
 	        <% end %>
         <% end %>
@@ -27,7 +27,7 @@ if(submitted) {
 		            "width":  50,
 		            "height": 50
 		          },
-		          "infowindow": "hello!"
+		          "infowindow": "<%= @shops.last.name %>"
 		        }
       ]);
       handler.bounds.extendWith(markers);

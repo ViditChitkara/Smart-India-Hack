@@ -2,11 +2,12 @@
 <table class="table table-sm">
   <thead>
     <tr>
-      <th scope="col">id</th>
-      <th scope="col">Item Name</th>
-      <th scope="col">Previous Month Price</th>
-      <th scope="col">Current Month Price</th>
-      <th scope="col">Actions</th>  
+      <th scope="col"><p>id</p></th>
+      <th scope="col"><p>Item Name</p></th>
+      <th scope="col"><p>Previous Month Price</p></th>
+      <th scope="col"><p>Current Month Price</p></th>
+      <th scope="col"><p>Percentage change</p></th>
+      <th scope="col"><p>Actions</p></th>  
     </tr>
   </thead>
   <tbody>
@@ -15,19 +16,43 @@
       <% pq = Quotation.where(month: "March",market_id: qi.item.market_id).first %>
       <% pqi = QuotationItem.where(item_id: qi.item.id, quotation_id: pq.id).first %>
       <tr>
-        <td><%= qi.id %></td>
-        <td><%= qi.item.name %></td>
-        <td><%= pqi.price %></td>
-        <td><%= qi.price %></td>
+        <td><p><%= qi.id %></p></td>
+        <td><p><%= qi.item.name %></p></td>
+        <td><p><%= pqi.price %></p></td>
+        <td><p><%= qi.price %></p></td>
         <td>
-          <% if qi.status == 0 %>
-            <% str = "/mark-verified?market=#{market_id}&month=#{month}&qi_id=#{qi.id}" %>
-            <a class="btn btn-primary" href="<%= str %>" data-method="POST" data-remote="true" style="margin-right: 6px;">Verified</button>
-            <% str1 = "/mark-inconsistent?market=#{market_id}&month=#{month}&qi_id=#{qi.id}" %>
-            <a class="btn btn-primary" href="<%= str1 %>" data-method="POST" data-remote="true style="color: white;">Inconsistent</button>
-          <% end %>
+          <p style="text-align: center;">
+            <% if !qi.price.nil? && !pqi.price.nil? %>
+              <% difference = (qi.price - pqi.price)/(pqi.price)*100 %>
+              <% if (qi.price - pqi.price)>=0 %>
+                Increased by <%= difference.round(2) %>
+              <% else %>
+                Decreased by <%= difference.round(2) %>
+              <% end %>
+            <% else %>
+              -
+            <% end %>
+          </p>
+        </td>
+        <td>
+          <p>
+            <% if qi.status == 0 %>
+              <% if difference && difference<50 %>
+                <% str = "/mark-verified?market=#{market_id}&month=#{month}&qi_id=#{qi.id}" %>
+                <a class="btn btn-primary" href="<%= str %>" data-method="POST" data-remote="true" style="margin-right: 6px;">Verified</a>
+                <% str1 = "/mark-inconsistent?market=#{market_id}&month=#{month}&qi_id=#{qi.id}" %>
+                <a class="btn btn-primary" href="<%= str1 %>" data-method="POST" data-remote="true" style="color: white;">Inconsistent</a>
+              <% end %>  
+            <% end %>
+          </p>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<style type="text/css">
+  p {
+    text-align: center;
+  }
+</style>
