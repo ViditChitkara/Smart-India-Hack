@@ -25,6 +25,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'yaml_db'
 gem 'seed_dump'
+gem 'underscore-rails'
+
+gem 'rails_12factor', group: :production
+
 gem 'gmaps4rails'
 gem 'underscore-rails'
 
