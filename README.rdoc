@@ -1,28 +1,16 @@
-== README
+== CPI Web Portal/ App Backend (Team Name: What the bug)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Ruby on rails backend for CPI android app.
 
-Things you may want to cover:
+== Installation Instruction
 
-* Ruby version
+* Set the development environment for Ruby on rails.
 
-* System dependencies
+*Commands:*
 
-* Configuration
+* `bundle install` --> To install libraries
+* `rake db:migrate` --> To set database
+* `rake db:seed` --> For test data
+* `rails s` --> To start the server locally
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Producution link: https://sih-cpi.herokuapp.com/
