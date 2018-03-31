@@ -92,10 +92,10 @@ module Api
         lon = params["lon"].to_f
         item = Item.find(item_id)
         shop = Shop.find(item.original_shop_id)
-        distance = distance [shop.latitude,shop.longitude],[lat,lon]
-        if distance>500
-          return response_data({}, "Failure", 200)
-        end
+        # distance = distance [shop.latitude,shop.longitude],[lat,lon]
+        # if distance>500
+        #   return response_data({}, "Failure", 200)
+        # end
         month = params["month"]
         market_id = item.market_id
         quotation = Quotation.where(month: month, market_id: market_id).first
