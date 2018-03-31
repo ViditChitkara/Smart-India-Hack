@@ -25,7 +25,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'yaml_db'
 gem 'seed_dump'
-gem 'gmaps4rails'
 gem 'underscore-rails'
 
 # Use ActiveModel has_secure_password
